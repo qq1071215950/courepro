@@ -7,10 +7,10 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="gateway" />
-        <module name="file" />
         <module name="business" />
-        <module name="system" />
         <module name="eureka" />
+        <module name="system" />
+        <module name="file" />
         <module name="server" />
         <module name="generator" />
       </profile>
