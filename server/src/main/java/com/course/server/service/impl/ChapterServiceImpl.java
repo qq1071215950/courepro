@@ -3,11 +3,15 @@ package com.course.server.service.impl;
 import com.course.server.domain.Chapter;
 import com.course.server.domain.ChapterExample;
 import com.course.server.dto.ChapterDto;
+import com.course.server.dto.PageDto;
 import com.course.server.mapper.ChapterMapper;
 import com.course.server.service.ChapterService;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
+import org.springframework.util.StringUtils;
 
 import javax.annotation.Resource;
 import java.util.ArrayList;
@@ -23,18 +27,21 @@ public class ChapterServiceImpl implements ChapterService {
 
     @Resource
     private ChapterMapper chapterMapper;
+
     @Override
-    public List<ChapterDto> list() {
-        ChapterExample example = new ChapterExample();
-        List<Chapter> chapters = chapterMapper.selectByExample(example);
-        List<ChapterDto> chapterDtos = new ArrayList<>();
-        if (!CollectionUtils.isEmpty(chapters)){
-            chapterDtos = chapters.stream().map(x ->{
-                ChapterDto chapterDto = new ChapterDto();
-                BeanUtils.copyProperties(x, chapterDto);
-                return chapterDto;
-            }).collect(Collectors.toList());
+    public void list(PageDto pageDto) {
+        PageHelper.startPage(pageDto.getPage(), pageDto.getSize());
+        ChapterExample chapterExample = new ChapterExample();
+        List<Chapter> chapterList = chapterMapper.selectByExample(chapterExample);
+        PageInfo<Chapter> pageInfo = new PageInfo<>(chapterList);
+        pageDto.setTotal(pageInfo.getTotal());
+        List<ChapterDto> chapterDtoList = new ArrayList<ChapterDto>();
+        for (int i = 0, l = chapterList.size(); i < l; i++) {
+            Chapter chapter = chapterList.get(i);
+            ChapterDto chapterDto = new ChapterDto();
+            BeanUtils.copyProperties(chapter, chapterDto);
+            chapterDtoList.add(chapterDto);
         }
-        return chapterDtos;
+        pageDto.setList(chapterDtoList);
     }
 }
