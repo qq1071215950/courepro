@@ -3,7 +3,16 @@ server:
 spring:
   application:
     name: gateway
+  cloud:
+    gateway:
+      routes:
+        id: system
+        uri: http://127.0.0.1:9100
+        predicates:
+          Path: /system/**
 eureka:
   client:
     service-url:
       defaultZone: http://localhost:8761/eureka/
+
+
