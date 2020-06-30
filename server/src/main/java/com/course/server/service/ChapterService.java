@@ -24,4 +24,10 @@ public interface ChapterService {
      * @param chapterDto
      */
     void save(ChapterDto chapterDto);
+
+    /**
+     * 根据id删除
+     * @param id
+     */
+    void delete(String id);
 }
