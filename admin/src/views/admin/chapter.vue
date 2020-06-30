@@ -141,7 +141,7 @@
             },
             list(page){
                 let _this = this;
-                _this.$ajax.post('http://127.0.0.1:9001/admin/chapter/list',{
+                _this.$ajax.post('http://127.0.0.1:9003/business/chapter/list',{
                     page: page,
                     size: _this.$refs.pagination.size,
                 }).then((response)=>{

@@ -20,7 +20,7 @@ import java.util.List;
  * @date 2020/6/29 16:43
  */
 @RestController
-@RequestMapping("/admin/chapter")
+@RequestMapping("/chapter")
 public class ChapterController {
 
     private static final Logger log = LoggerFactory.getLogger(ChapterController.class);
