@@ -18,4 +18,10 @@ public interface ChapterService {
      * @return
      */
     void list(PageDto pageDto);
+
+    /**
+     * 新增
+     * @param chapterDto
+     */
+    void save(ChapterDto chapterDto);
 }

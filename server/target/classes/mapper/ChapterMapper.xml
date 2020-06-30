@@ -82,7 +82,7 @@
     </if>
   </select>
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
-    select 
+    select
     <include refid="Base_Column_List" />
     from chapter
     where id = #{id,jdbcType=CHAR}
@@ -101,8 +101,8 @@
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.String">
       SELECT LAST_INSERT_ID()
     </selectKey>
-    insert into chapter (course_id, name)
-    values (#{courseId,jdbcType=CHAR}, #{name,jdbcType=VARCHAR})
+    insert into chapter (id,course_id, name)
+    values (#{id,jdbcType=CHAR},#{courseId,jdbcType=CHAR}, #{name,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.course.server.domain.Chapter">
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.String">
