@@ -3,6 +3,7 @@ package com.course.business.controller.admin;
 
 import com.course.server.dto.ChapterDto;
 import com.course.server.dto.PageDto;
+import com.course.server.dto.ResponseDto;
 import com.course.server.service.ChapterService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,20 +24,26 @@ import java.util.List;
 @RequestMapping("/chapter")
 public class ChapterController {
 
-    private static final Logger log = LoggerFactory.getLogger(ChapterController.class);
-    @Autowired
+    private static final Logger LOG = LoggerFactory.getLogger(ChapterController.class);
+
+    @Resource
     private ChapterService chapterService;
 
     @RequestMapping("/list")
-    public PageDto list(@RequestBody PageDto pageDto) {
-        log.info("pageDto: {}", pageDto);
+    public ResponseDto list(@RequestBody PageDto pageDto) {
+        LOG.info("pageDto: {}", pageDto);
+        ResponseDto responseDto = new ResponseDto();
         chapterService.list(pageDto);
-        return pageDto;
+        responseDto.setContent(pageDto);
+        return responseDto;
     }
+
     @RequestMapping("/save")
-    public ChapterDto save(@RequestBody ChapterDto chapterDto) {
-        log.info("chapterDto: {}", chapterDto);
+    public ResponseDto save(@RequestBody ChapterDto chapterDto) {
+        LOG.info("chapterDto: {}", chapterDto);
+        ResponseDto responseDto = new ResponseDto();
         chapterService.save(chapterDto);
-        return chapterDto;
+        responseDto.setContent(chapterDto);
+        return responseDto;
     }
 }
