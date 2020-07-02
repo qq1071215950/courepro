@@ -3,6 +3,9 @@ package com.course.business.controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.math.BigDecimal;
+
+
 /**
  * 路由测试
  * @author jiange
@@ -13,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class BusTest {
 
     @RequestMapping("/test")
-    public String getStr(){
+    public String getStr() {
         return "bus test";
     }
 }

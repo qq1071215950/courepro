@@ -41,5 +41,7 @@
         <table tableName="%">
             <generatedKey column="id" sqlStatement="MySql" identity="true"/>
         </table>
+      <!--  单表的生成-->
+     <!--   <table tableName="section" domainObjectName="Section"/>-->
     </context>
 </generatorConfiguration>
