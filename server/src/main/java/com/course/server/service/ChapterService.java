@@ -1,10 +1,9 @@
 package com.course.server.service;
 
-import com.course.server.domain.Chapter;
 import com.course.server.dto.ChapterDto;
-import com.course.server.dto.PageDto;
+import com.course.server.dto.ChapterPageDto;
 
-import java.util.List;
+
 
 /**
  * @author jiange
@@ -14,10 +13,10 @@ public interface ChapterService {
 
     /**
      * 分页查询
-     * @param pageDto 分页对象
+     * @param chapterPageDto 分页对象
      * @return
      */
-    void list(PageDto pageDto);
+    void list(ChapterPageDto chapterPageDto);
 
     /**
      * 新增
