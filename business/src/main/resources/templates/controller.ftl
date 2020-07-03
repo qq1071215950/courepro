@@ -52,19 +52,6 @@ public class ${Domain}Controller {
             </#if>
         </#list>
     </#if>
-
-    <#if columns??>
-        <#list columns as col>
-            <#if col.name!="id" && col.nameHump!="createdAt" && col.nameHump!="updatedAt" && col.nameHump!="sort">
-                <#if col.nullAble == 'No'>
-        ValidatorUtil.require(${domain}Dto.get${col.nameBigHump}(), "${col.nameCn}");
-                </#if>
-                <#if (col.length > 0)>
-        ValidatorUtil.length(${domain}Dto.get${col.nameBigHump}(), "${col.nameCn}", 1, ${col.length?c});
-                </#if>
-            </#if>
-        </#list>
-    </#if>
         ResponseDto responseDto = new ResponseDto();
         ${domain}Service.save(${domain}Dto);
         responseDto.setContent(${domain}Dto);

@@ -56,7 +56,7 @@ public class FreeMarkerController {
     private static String toControllerPath = MODULE + "\\src\\main\\java\\com\\course\\" + MODULE + "\\controller\\admin\\";
     private static String toControllerPackagePath =   "com.course." + MODULE + ".controller.admin";
 
-    private static String tableName = "course";
+    private static String tableName = "section";
 
     private static String saveUrl = "D:\\IDEAWorkSpace\\courepro\\";
 
@@ -86,11 +86,11 @@ public class FreeMarkerController {
         root.put("columns", mapList);
         root.put("typeSet", getJavaTypes(mapList));
         // 生成dto
-       // freeMarkerUtil.generate(root, "dto.ftl", saveUrl+toDtoPath, entityName + "Dto.java");
+        freeMarkerUtil.generate(root, "dto.ftl", saveUrl+toDtoPath, entityName + "Dto.java");
         // 生成service
-        //freeMarkerUtil.generate(root, "service.ftl", saveUrl+toServicePath, entityName + "Service.java");
+        freeMarkerUtil.generate(root, "service.ftl", saveUrl+toServicePath, entityName + "Service.java");
         // 生成serviceImpl
-      //  freeMarkerUtil.generate(root, "serviceImpl.ftl", saveUrl+toServiceImplPath, entityName + "ServiceImpl.java");
+        freeMarkerUtil.generate(root, "serviceImpl.ftl", saveUrl+toServiceImplPath, entityName + "ServiceImpl.java");
         // 生成controller
         freeMarkerUtil.generate(root, "controller.ftl", saveUrl+toControllerPath, entityName + "Controller.java");
         return "生成成功";

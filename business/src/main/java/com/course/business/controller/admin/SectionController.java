@@ -1,7 +1,7 @@
 package com.course.business.controller.admin;
 
-import com.course.server.service.CourseService;
-import com.course.server.dto.CourseDto;
+import com.course.server.service.SectionService;
+import com.course.server.dto.SectionDto;
 import com.course.server.dto.PageDto;
 import com.course.server.dto.ResponseDto;
 
@@ -13,13 +13,13 @@ import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
 
 @RestController
-@RequestMapping("/course")
-public class CourseController {
+@RequestMapping("/section")
+public class SectionController {
 
-    private static final Logger LOG = LoggerFactory.getLogger(CourseController.class);
+    private static final Logger LOG = LoggerFactory.getLogger(SectionController.class);
 
     @Resource
-    private CourseService courseService;
+    private SectionService sectionService;
 
      /**
      * 列表查询
@@ -27,7 +27,7 @@ public class CourseController {
      @PostMapping("/list")
      public ResponseDto list(@RequestBody PageDto pageDto) {
          ResponseDto responseDto = new ResponseDto();
-         courseService.list(pageDto);
+         sectionService.list(pageDto);
          responseDto.setContent(pageDto);
          return responseDto;
      }
@@ -36,15 +36,13 @@ public class CourseController {
     * 保存，id有值时更新，无值时新增
     */
     @PostMapping("/save")
-    public ResponseDto save(@RequestBody CourseDto courseDto) {
-        ValidatorUtil.require(courseDto.getName(), "name");
-        ValidatorUtil.length(courseDto.getName(), "name", 1, 50);
-        ValidatorUtil.length(courseDto.getSummary(), "summary", 1, 2000);
-        ValidatorUtil.length(courseDto.getImage(), "image", 1, 100);
-
+    public ResponseDto save(@RequestBody SectionDto sectionDto) {
+        ValidatorUtil.require(sectionDto.getTitle(), "title");
+        ValidatorUtil.length(sectionDto.getTitle(), "title", 1, 50);
+        ValidatorUtil.length(sectionDto.getVideo(), "video", 1, 200);
         ResponseDto responseDto = new ResponseDto();
-        courseService.save(courseDto);
-        responseDto.setContent(courseDto);
+        sectionService.save(sectionDto);
+        responseDto.setContent(sectionDto);
         return responseDto;
     }
 
@@ -54,7 +52,7 @@ public class CourseController {
     @DeleteMapping("/delete/{id}")
     public ResponseDto delete(@PathVariable String id) {
         ResponseDto responseDto = new ResponseDto();
-        courseService.delete(id);
+        sectionService.delete(id);
         return responseDto;
     }
 }
