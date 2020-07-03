@@ -38,10 +38,26 @@
         <javaClientGenerator type="XMLMAPPER" targetPackage="com.course.server.mapper"
                              targetProject="D:\IDEAWorkSpace\courepro\server\src\main\java"/>
         <!--生成全部表tableName设为%-->
-        <table tableName="%">
+<!--        <table tableName="%">
             <generatedKey column="id" sqlStatement="MySql" identity="true"/>
-        </table>
-      <!--  单表的生成-->
-     <!--   <table tableName="section" domainObjectName="Section"/>-->
+        </table>-->
+      <!--  单表的生成，生成service，接口实现，controller必须打开具体的表配置，不能采用模糊的方式-->
+        <table tableName="section" domainObjectName="Section"/>
+        <!--        <table tableName="test" domainObjectName="Test"/>-->
+        <!--        <table tableName="chapter" domainObjectName="Chapter"/>-->
+        <!--        <table tableName="section" domainObjectName="Section"/>-->
+        <!--        <table tableName="course" domainObjectName="Course"/>-->
+        <!--        <table tableName="course_content" domainObjectName="CourseContent"/>-->
+        <!--        <table tableName="course_content_file" domainObjectName="CourseContentFile"/>-->
+        <!--        <table tableName="teacher" domainObjectName="Teacher"/>-->
+        <!--        <table tableName="file" domainObjectName="File"/>-->
+        <!--        <table tableName="user" domainObjectName="User"/>-->
+        <!--        <table tableName="resource" domainObjectName="Resource"/>-->
+        <!--        <table tableName="role" domainObjectName="Role"/>-->
+        <!--        <table tableName="role_resource" domainObjectName="RoleResource"/>-->
+        <!--        <table tableName="role_user" domainObjectName="RoleUser"/>-->
+        <!--        <table tableName="member" domainObjectName="Member"/>-->
+        <!--        <table tableName="sms" domainObjectName="Sms"/>-->
+
     </context>
 </generatorConfiguration>

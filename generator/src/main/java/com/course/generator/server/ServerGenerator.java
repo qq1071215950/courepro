@@ -90,10 +90,10 @@ public class ServerGenerator {
         FreemarkerUtil.initConfig("service.ftl");
         FreemarkerUtil.generator(toServicePath + Domain + "Service.java", map);
 
-        // 生成service接口实现
+       /* // 生成service接口实现
         FreemarkerUtil.initConfig("serviceImpl.ftl");
         FreemarkerUtil.generator(toServiceImplPath + Domain + "Service.java", map);
-
+*/
         // 生成controller
         FreemarkerUtil.initConfig("controller.ftl");
         FreemarkerUtil.generator(toControllerPath + Domain + "Controller.java", map);
