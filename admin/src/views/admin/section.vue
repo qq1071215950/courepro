@@ -135,7 +135,7 @@
       return {
         section: {},
         sections: [],
-        CHARGE: [{key:"C", value:"收费"},{key:"F", value:"免费"}],
+        CHARGE: [{key:"c", value:"收费"},{key:"f", value:"免费"}],
       }
     },
     mounted: function() {
