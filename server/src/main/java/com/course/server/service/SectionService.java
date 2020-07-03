@@ -1,14 +1,14 @@
 package com.course.server.service;
 
 import com.course.server.dto.SectionDto;
-import com.course.server.dto.PageDto;
+import com.course.server.dto.SectionPageDto;
 
 public interface SectionService {
 
     /**
      * 列表查询
      */
-    public void list(PageDto pageDto);
+    public void list(SectionPageDto sectionPageDto);
 
     /**
      * 保存，id有值时更新，无值时新增
