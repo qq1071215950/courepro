@@ -41,7 +41,6 @@ public class CourseController {
         ValidatorUtil.length(courseDto.getName(), "name", 1, 50);
         ValidatorUtil.length(courseDto.getSummary(), "summary", 1, 2000);
         ValidatorUtil.length(courseDto.getImage(), "image", 1, 100);
-
         ResponseDto responseDto = new ResponseDto();
         courseService.save(courseDto);
         responseDto.setContent(courseDto);

@@ -76,7 +76,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, name, summary, time, price, image, level, charge, status, enroll, sort, created_at, 
+    id, name, summary, time, price, image, level, charge, status, enroll, sort, created_at,
     updated_at, teacher_id
   </sql>
   <select id="selectByExample" parameterType="com.course.server.domain.CourseExample" resultMap="BaseResultMap">
@@ -94,7 +94,7 @@
     </if>
   </select>
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
-    select 
+    select
     <include refid="Base_Column_List" />
     from course
     where id = #{id,jdbcType=CHAR}
@@ -113,14 +113,14 @@
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.String">
       SELECT LAST_INSERT_ID()
     </selectKey>
-    insert into course (name, summary, time, 
-      price, image, level, charge, 
-      status, enroll, sort, 
+    insert into course (id,name, summary, time,
+      price, image, level, charge,
+      status, enroll, sort,
       created_at, updated_at, teacher_id
       )
-    values (#{name,jdbcType=VARCHAR}, #{summary,jdbcType=VARCHAR}, #{time,jdbcType=INTEGER}, 
-      #{price,jdbcType=DECIMAL}, #{image,jdbcType=VARCHAR}, #{level,jdbcType=CHAR}, #{charge,jdbcType=CHAR}, 
-      #{status,jdbcType=CHAR}, #{enroll,jdbcType=INTEGER}, #{sort,jdbcType=INTEGER}, 
+    values (#{id,jdbcType=CHAR}, #{name,jdbcType=VARCHAR}, #{summary,jdbcType=VARCHAR}, #{time,jdbcType=INTEGER},
+      #{price,jdbcType=DECIMAL}, #{image,jdbcType=VARCHAR}, #{level,jdbcType=CHAR}, #{charge,jdbcType=CHAR},
+      #{status,jdbcType=CHAR}, #{enroll,jdbcType=INTEGER}, #{sort,jdbcType=INTEGER},
       #{createdAt,jdbcType=TIMESTAMP}, #{updatedAt,jdbcType=TIMESTAMP}, #{teacherId,jdbcType=CHAR}
       )
   </insert>

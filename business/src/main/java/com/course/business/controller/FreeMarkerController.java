@@ -56,7 +56,7 @@ public class FreeMarkerController {
     private static String toControllerPath = MODULE + "\\src\\main\\java\\com\\course\\" + MODULE + "\\controller\\admin\\";
     private static String toControllerPackagePath =   "com.course." + MODULE + ".controller.admin";
 
-    private static String tableName = "section";
+    private static String tableName = "course";
 
     private static String saveUrl = "D:\\IDEAWorkSpace\\courepro\\";
 

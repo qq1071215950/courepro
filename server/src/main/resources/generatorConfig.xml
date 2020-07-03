@@ -42,11 +42,13 @@
             <generatedKey column="id" sqlStatement="MySql" identity="true"/>
         </table>-->
       <!--  单表的生成，生成service，接口实现，controller必须打开具体的表配置，不能采用模糊的方式-->
+<!--
         <table tableName="section" domainObjectName="Section"/>
+-->
         <!--        <table tableName="test" domainObjectName="Test"/>-->
         <!--        <table tableName="chapter" domainObjectName="Chapter"/>-->
         <!--        <table tableName="section" domainObjectName="Section"/>-->
-        <!--        <table tableName="course" domainObjectName="Course"/>-->
+                <table tableName="course" domainObjectName="Course"/>
         <!--        <table tableName="course_content" domainObjectName="CourseContent"/>-->
         <!--        <table tableName="course_content_file" domainObjectName="CourseContentFile"/>-->
         <!--        <table tableName="teacher" domainObjectName="Teacher"/>-->

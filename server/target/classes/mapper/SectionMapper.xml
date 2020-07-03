@@ -73,7 +73,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, title, course_id, chapter_id, video, time, charge, sort, created_at, updated_at, 
+    id, title, course_id, chapter_id, video, time, charge, sort, created_at, updated_at,
     vod
   </sql>
   <select id="selectByExample" parameterType="com.course.server.domain.SectionExample" resultMap="BaseResultMap">
@@ -91,7 +91,7 @@
     </if>
   </select>
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
-    select 
+    select
     <include refid="Base_Column_List" />
     from section
     where id = #{id,jdbcType=CHAR}
@@ -110,12 +110,12 @@
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.String">
       SELECT LAST_INSERT_ID()
     </selectKey>
-    insert into section (title, course_id, chapter_id, 
-      video, time, charge, sort, 
+    insert into section (id, title, course_id, chapter_id,
+      video, time, charge, sort,
       created_at, updated_at, vod
       )
-    values (#{title,jdbcType=VARCHAR}, #{courseId,jdbcType=CHAR}, #{chapterId,jdbcType=CHAR}, 
-      #{video,jdbcType=VARCHAR}, #{time,jdbcType=INTEGER}, #{charge,jdbcType=CHAR}, #{sort,jdbcType=INTEGER}, 
+    values (#{id,jdbcType=CHAR}, #{title,jdbcType=VARCHAR}, #{courseId,jdbcType=CHAR}, #{chapterId,jdbcType=CHAR},
+      #{video,jdbcType=VARCHAR}, #{time,jdbcType=INTEGER}, #{charge,jdbcType=CHAR}, #{sort,jdbcType=INTEGER},
       #{createdAt,jdbcType=TIMESTAMP}, #{updatedAt,jdbcType=TIMESTAMP}, #{vod,jdbcType=CHAR}
       )
   </insert>
