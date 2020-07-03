@@ -13,8 +13,8 @@ import java.util.regex.Pattern;
  * @date 2020/7/2 10:01
  */
 public class EnumGenerator {
-    //    static String path = "admin\\public\\static\\js\\enums.js";
-    static String path = "web\\public\\static\\js\\enums.js";
+    static String path = "admin\\public\\static\\js\\enums.js";
+    //static String path = "web\\public\\static\\js\\enums.js";
 
     public static void main(String[] args) {
         StringBuffer bufferObject = new StringBuffer();
