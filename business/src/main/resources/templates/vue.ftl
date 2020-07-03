@@ -142,7 +142,7 @@
       list(page) {
         let _this = this;
         Loading.show();
-        _this.$ajax.post(process.env.VUE_APP_SERVER + '/${module}/admin/${domain}/list', {
+        _this.$ajax.post(process.env.VUE_APP_SERVER + '/${module}/${domain}/list', {
           page: page,
           size: _this.$refs.pagination.size,
         }).then((response)=>{
@@ -177,7 +177,7 @@
         }
 
         Loading.show();
-        _this.$ajax.post(process.env.VUE_APP_SERVER + '/${module}/admin/${domain}/save', _this.${domain}).then((response)=>{
+        _this.$ajax.post(process.env.VUE_APP_SERVER + '/${module}/${domain}/save', _this.${domain}).then((response)=>{
           Loading.hide();
           let resp = response.data;
           if (resp.success) {
@@ -197,7 +197,7 @@
         let _this = this;
         Confirm.show("删除${tableNameCn}后不可恢复，确认删除？", function () {
           Loading.show();
-          _this.$ajax.delete(process.env.VUE_APP_SERVER + '/${module}/admin/${domain}/delete/' + id).then((response)=>{
+          _this.$ajax.delete(process.env.VUE_APP_SERVER + '/${module}/${domain}/delete/' + id).then((response)=>{
             Loading.hide();
             let resp = response.data;
             if (resp.success) {
