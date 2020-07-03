@@ -16,7 +16,7 @@ import java.util.*;
 public class VueGenerator {
     static String MODULE = "business";
     static String toVuePath = "admin\\src\\views\\admin\\";
-    static String generatorConfigPath = "server\\src\\main\\resources\\generator\\generatorConfig.xml";
+    static String generatorConfigPath = "server\\src\\main\\resources\\generatorConfig.xml";
 
     public static void main(String[] args) throws Exception {
         String module = MODULE;
