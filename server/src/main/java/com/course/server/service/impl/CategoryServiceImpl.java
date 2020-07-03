@@ -73,4 +73,17 @@ public class CategoryServiceImpl implements CategoryService {
     public void delete(String id) {
         categoryMapper.deleteByPrimaryKey(id);
     }
+
+    /**
+     * 列表查询
+     */
+    @Override
+    public List<CategoryDto> all() {
+        CategoryExample categoryExample = new CategoryExample();
+        categoryExample.setOrderByClause("sort asc");
+        List<Category> categoryList = categoryMapper.selectByExample(categoryExample);
+        List<CategoryDto> categoryDtoList = CopyUtil.copyList(categoryList, CategoryDto.class);
+        return categoryDtoList;
+    }
+
 }

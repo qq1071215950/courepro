@@ -3,6 +3,8 @@ package com.course.server.service;
 import com.course.server.dto.CategoryDto;
 import com.course.server.dto.PageDto;
 
+import java.util.List;
+
 public interface CategoryService {
 
     /**
@@ -19,4 +21,6 @@ public interface CategoryService {
     * 删除
     */
     void delete(String id);
+
+    List<CategoryDto> all();
 }
