@@ -5,6 +5,7 @@ import com.course.server.domain.SectionExample;
 import com.course.server.dto.SectionDto;
 import com.course.server.dto.SectionPageDto;
 import com.course.server.mapper.SectionMapper;
+import com.course.server.service.CourseService;
 import com.course.server.service.SectionService;
 import com.course.server.utils.CopyUtil;
 import com.course.server.utils.UuidUtil;
@@ -22,6 +23,9 @@ public class SectionServiceImpl implements SectionService {
 
     @Resource
     private SectionMapper sectionMapper;
+
+    @Resource
+    private CourseService courseService;
 
     /**
      * 列表查询
@@ -56,6 +60,7 @@ public class SectionServiceImpl implements SectionService {
         } else {
             this.update(section);
         }
+        courseService.updateTime(sectionDto.getCourseId());
     }
 
     /**

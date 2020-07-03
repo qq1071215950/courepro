@@ -19,4 +19,10 @@ public interface CourseService {
     * 删除
     */
     void delete(String id);
+
+    /**
+     * 更新时长
+     * @param courseId
+     */
+    void updateTime(String courseId);
 }
