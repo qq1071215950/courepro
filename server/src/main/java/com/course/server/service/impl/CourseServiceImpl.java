@@ -5,6 +5,7 @@ import com.course.server.domain.CourseExample;
 import com.course.server.dto.CourseDto;
 import com.course.server.mapper.CourseMapper;
 import com.course.server.mapper.my.MyCourseMapper;
+import com.course.server.service.CourseCategoryService;
 import com.course.server.service.CourseService;
 import com.course.server.dto.PageDto;
 import com.course.server.utils.CopyUtil;
@@ -30,6 +31,10 @@ public class CourseServiceImpl implements CourseService {
 
     @Resource
     private MyCourseMapper myCourseMapper;
+
+    @Resource
+    private CourseCategoryService courseCategoryService;
+
 
     /**
      * 列表查询
@@ -58,6 +63,8 @@ public class CourseServiceImpl implements CourseService {
         } else {
             this.update(course);
         }
+        // 批量保存课程分类
+        courseCategoryService.saveBatch(courseDto.getId(), courseDto.getCategroys());
     }
 
     /**

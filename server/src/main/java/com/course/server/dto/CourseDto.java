@@ -5,6 +5,7 @@ import lombok.Data;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.List;
 
 @Data
 public class CourseDto implements Serializable {
@@ -67,4 +68,6 @@ public class CourseDto implements Serializable {
      * teacher_id
      */
     private String teacherId;
+
+    private List<CategoryDto> categroys;
 }
