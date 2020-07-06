@@ -1,5 +1,6 @@
 package com.course.server.service;
 
+import com.course.server.dto.CourseContentDto;
 import com.course.server.dto.CourseDto;
 import com.course.server.dto.PageDto;
 
@@ -25,4 +26,8 @@ public interface CourseService {
      * @param courseId
      */
     void updateTime(String courseId);
+
+    CourseContentDto findContent(String id);
+
+    int saveContent(CourseContentDto contentDto);
 }

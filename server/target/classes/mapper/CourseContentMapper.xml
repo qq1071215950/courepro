@@ -102,7 +102,7 @@
     </if>
   </select>
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="ResultMapWithBLOBs">
-    select 
+    select
     <include refid="Base_Column_List" />
     ,
     <include refid="Blob_Column_List" />
@@ -123,8 +123,8 @@
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.String">
       SELECT LAST_INSERT_ID()
     </selectKey>
-    insert into course_content (content)
-    values (#{content,jdbcType=LONGVARCHAR})
+    insert into course_content (id, content)
+    values (#{id,jdbcType=CHAR},#{content,jdbcType=LONGVARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.course.server.domain.CourseContent">
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.String">
