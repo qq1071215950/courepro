@@ -63,51 +63,6 @@
       </div>
     </div>
 
-    <!--    <table id="simple-table" class="table  table-bordered table-hover">-->
-    <!--      <thead>-->
-    <!--      <tr>-->
-    <!--        <th>id</th>-->
-    <!--        <th>名称</th>-->
-    <!--        <th>概述</th>-->
-    <!--        <th>时长</th>-->
-    <!--        <th>价格（元）</th>-->
-    <!--        <th>封面</th>-->
-    <!--        <th>级别</th>-->
-    <!--        <th>收费</th>-->
-    <!--        <th>状态</th>-->
-    <!--        <th>报名数</th>-->
-    <!--        <th>顺序</th>-->
-    <!--        <th>操作</th>-->
-    <!--      </tr>-->
-    <!--      </thead>-->
-
-    <!--      <tbody>-->
-    <!--      <tr v-for="course in courses">-->
-    <!--        <td>{{course.id}}</td>-->
-    <!--        <td>{{course.name}}</td>-->
-    <!--        <td>{{course.summary}}</td>-->
-    <!--        <td>{{course.time}}</td>-->
-    <!--        <td>{{course.price}}</td>-->
-    <!--        <td>{{course.image}}</td>-->
-    <!--        <td>{{COURSE_LEVEL | optionKV(course.level)}}</td>-->
-    <!--        <td>{{COURSE_CHARGE | optionKV(course.charge)}}</td>-->
-    <!--        <td>{{COURSE_STATUS | optionKV(course.status)}}</td>-->
-    <!--        <td>{{course.enroll}}</td>-->
-    <!--        <td>{{course.sort}}</td>-->
-    <!--      <td>-->
-    <!--        <div class="hidden-sm hidden-xs btn-group">-->
-    <!--          <button v-on:click="edit(course)" class="btn btn-xs btn-info">-->
-    <!--            <i class="ace-icon fa fa-pencil bigger-120"></i>-->
-    <!--          </button>-->
-    <!--          <button v-on:click="del(course.id)" class="btn btn-xs btn-danger">-->
-    <!--            <i class="ace-icon fa fa-trash-o bigger-120"></i>-->
-    <!--          </button>-->
-    <!--        </div>-->
-    <!--      </td>-->
-    <!--      </tr>-->
-    <!--      </tbody>-->
-    <!--    </table>-->
-
     <div id="form-modal" class="modal fade" tabindex="-1" role="dialog">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -213,6 +168,11 @@
             <form class="form-horizontal">
               <div class="form-group">
                 <div class="col-lg-12">
+                  {{saveContentLabel}}
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="col-lg-12">
                   <div id="content"></div>
                 </div>
               </div>
@@ -249,6 +209,7 @@
         COURSE_STATUS: COURSE_STATUS,
         categorys: [],
         tree: {},
+        saveContentLabel: "",
       }
     },
     mounted: function() {
@@ -411,6 +372,7 @@
         });
         // 先清空历史文本
         $("#content").summernote('code', '');
+        _this.saveContentLabel = "";
         Loading.show();
         _this.$ajax.get(process.env.VUE_APP_SERVER + '/business/course/find-content/' + id).then((response)=>{
           Loading.hide();
@@ -421,6 +383,14 @@
             if (resp.content) {
               $("#content").summernote('code', resp.content.content);
             }
+            // 定时自动保存
+            let saveContentInterval = setInterval(function() {
+              _this.saveContent();
+            }, 5000);
+            // 关闭内容框时，清空自动保存任务
+            $('#course-content-modal').on('hidden.bs.modal', function (e) {
+              clearInterval(saveContentInterval);
+            })
           } else {
             Toast.warning(resp.message);
           }
@@ -440,7 +410,10 @@
           Loading.hide();
           let resp = response.data;
           if (resp.success) {
-            Toast.success("内容保存成功");
+            // Toast.success("内容保存成功");
+            // let now = Tool.dateFormat("yyyy-MM-dd hh:mm:ss");
+            let now = Tool.dateFormat("mm:ss");
+            _this.saveContentLabel = "最后保存时间：" + now;
           } else {
             Toast.warning(resp.message);
           }
