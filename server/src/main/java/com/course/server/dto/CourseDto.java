@@ -69,5 +69,5 @@ public class CourseDto implements Serializable {
      */
     private String teacherId;
 
-    private List<CategoryDto> categroys;
+    private List<CategoryDto> categorys;
 }

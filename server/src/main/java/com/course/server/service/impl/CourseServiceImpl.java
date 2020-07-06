@@ -15,6 +15,7 @@ import com.github.pagehelper.PageInfo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 
 import javax.annotation.Resource;
@@ -55,16 +56,21 @@ public class CourseServiceImpl implements CourseService {
     /**
      * 保存，id有值时更新，无值时新增
      */
+    @Transactional
     @Override
     public void save(CourseDto courseDto) {
         Course course = CopyUtil.copy(courseDto, Course.class);
+        String courseId = null;
         if (StringUtils.isEmpty(courseDto.getId())) {
+            course.setId(UuidUtil.getShortUuid());
             this.insert(course);
+            courseId = course.getId();
         } else {
             this.update(course);
+            courseId = course.getId();
         }
         // 批量保存课程分类
-        courseCategoryService.saveBatch(courseDto.getId(), courseDto.getCategroys());
+        courseCategoryService.saveBatch(courseId, courseDto.getCategorys());
     }
 
     /**
@@ -74,7 +80,6 @@ public class CourseServiceImpl implements CourseService {
         Date now = new Date();
         course.setCreatedAt(now);
         course.setUpdatedAt(now);
-        course.setId(UuidUtil.getShortUuid());
         courseMapper.insert(course);
     }
 

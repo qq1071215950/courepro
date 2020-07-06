@@ -18,4 +18,6 @@ public interface CourseCategoryService {
     void delete(String id);
 
     void saveBatch(String courseId, List<CategoryDto> dtoList);
+
+    List<CourseCategoryDto> listByCourse(String courseId);
 }
