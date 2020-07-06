@@ -88,7 +88,6 @@ public class CourseCategoryServiceImpl implements CourseCategoryService {
         for (int i = 0, l = dtoList.size(); i < l; i++) {
             CategoryDto categoryDto = dtoList.get(i);
             CourseCategory courseCategory = new CourseCategory();
-            courseCategory.setId(UuidUtil.getShortUuid());
             courseCategory.setCourseId(courseId);
             courseCategory.setCategoryId(categoryDto.getId());
             insert(courseCategory);

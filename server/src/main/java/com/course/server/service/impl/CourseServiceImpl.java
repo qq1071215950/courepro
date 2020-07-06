@@ -63,11 +63,11 @@ public class CourseServiceImpl implements CourseService {
         String courseId = null;
         if (StringUtils.isEmpty(courseDto.getId())) {
             course.setId(UuidUtil.getShortUuid());
+            courseId = course.getId();
             this.insert(course);
-            courseId = course.getId();
         } else {
-            this.update(course);
             courseId = course.getId();
+            this.update(course);
         }
         // 批量保存课程分类
         courseCategoryService.saveBatch(courseId, courseDto.getCategorys());
