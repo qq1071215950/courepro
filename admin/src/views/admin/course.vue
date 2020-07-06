@@ -112,6 +112,15 @@
             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
             <h4 class="modal-title">表单</h4>
           </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label">
+              分类
+            </label>
+            <div class="col-sm-10">
+              <ul id="tree" class="ztree"></ul>
+            </div>
+          </div>
+
           <div class="modal-body">
             <form class="form-horizontal">
               <div class="form-group">
@@ -204,11 +213,13 @@
         COURSE_LEVEL: COURSE_LEVEL,
         COURSE_CHARGE: COURSE_CHARGE,
         COURSE_STATUS: COURSE_STATUS,
+        categorys: [],
       }
     },
     mounted: function() {
       let _this = this;
       _this.$refs.pagination.size = 5;
+      _this.allCategory();
       _this.list(1);
       // sidebar激活样式方法一
       // this.$parent.activeSidebar("business-course-sidebar");
@@ -288,6 +299,37 @@
         let _this = this;
         SessionStorage.set("course", course);
         _this.$router.push("/business/chapter");
+      },
+
+      allCategory() {
+        let _this = this;
+        Loading.show();
+        _this.$ajax.post(process.env.VUE_APP_SERVER + '/business/admin/category/all').then((response)=>{
+          Loading.hide();
+          let resp = response.data;
+          _this.categorys = resp.content;
+
+          _this.initTree();
+        })
+      },
+
+      initTree() {
+        let _this = this;
+        let setting = {
+          check: {
+            enable: true
+          },
+          data: {
+            simpleData: {
+              idKey: "id",
+              pIdKey: "parent",
+              rootPId: "00000000",
+              enable: true
+            }
+          }
+        };
+        let zNodes = _this.categorys;
+        $.fn.zTree.init($("#tree"), setting, zNodes);
       },
 
       /**
