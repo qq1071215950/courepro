@@ -9,4 +9,4 @@ eureka:
       defaultZone: http://localhost:8761/eureka/
 file:
   path: D:/file/imooc/course/
-  domain: http://127.0.0.1:9003/file/
+  domain: http://127.0.0.1:9003/file/f/
