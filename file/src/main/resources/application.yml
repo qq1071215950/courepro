@@ -10,4 +10,3 @@ eureka:
 file:
   path: D:/file/imooc/course/
   domain: http://127.0.0.1:9003/file/
-  file.path=D:/file/imooc/course/
