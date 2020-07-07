@@ -3,6 +3,10 @@ server:
 spring:
   application:
     name: file
+  servlet:
+    multipart:
+      max-file-size: 50MB
+      max-request-size: 50MB
 eureka:
   client:
     service-url:
@@ -10,3 +14,4 @@ eureka:
 file:
   path: D:/file/imooc/course/
   domain: http://127.0.0.1:9003/file/f/
+
