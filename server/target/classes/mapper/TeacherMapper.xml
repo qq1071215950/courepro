@@ -86,7 +86,7 @@
     </if>
   </select>
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
-    select 
+    select
     <include refid="Base_Column_List" />
     from teacher
     where id = #{id,jdbcType=CHAR}
@@ -105,10 +105,10 @@
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.String">
       SELECT LAST_INSERT_ID()
     </selectKey>
-    insert into teacher (name, nickname, image, 
+    insert into teacher (id, name, nickname, image,
       position, motto, intro
       )
-    values (#{name,jdbcType=VARCHAR}, #{nickname,jdbcType=VARCHAR}, #{image,jdbcType=VARCHAR}, 
+    values (#{id,jdbcType=CHAR}, #{name,jdbcType=VARCHAR}, #{nickname,jdbcType=VARCHAR}, #{image,jdbcType=VARCHAR},
       #{position,jdbcType=VARCHAR}, #{motto,jdbcType=VARCHAR}, #{intro,jdbcType=VARCHAR}
       )
   </insert>
