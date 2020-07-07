@@ -16,6 +16,12 @@ spring:
             - Path=/business/**
           filters:
             - StripPrefix=1  #前缀， 在当前路径匹配中表示去掉第一个前缀 /business/xx -> /xxx
+        - id: file  # 请求 http://localhost:8100/data-service2/test转发到 http://localhost:8080/test
+          uri: http://localhost:9002
+          predicates:
+            - Path=/file/**
+          filters:
+            - StripPrefix=1  #前缀， 在当前路径匹配中表示去掉第一个前缀 /business/xx -> /xxx
 eureka:
   client:
     service-url:
