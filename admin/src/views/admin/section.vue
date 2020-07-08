@@ -118,12 +118,6 @@
                   <input v-model="section.sort" class="form-control">
                 </div>
               </div>
-              <div class="form-group">
-                <label class="col-sm-2 control-label">vod</label>
-                <div class="col-sm-10">
-                  <input v-model="section.vod" class="form-control">
-                </div>
-              </div>
             </form>
           </div>
           <div class="modal-footer">
@@ -164,7 +158,7 @@
       _this.chapter = chapter;
       _this.list(1);
       // sidebar激活样式方法一
-      this.$parent.activeSidebar("business-section-sidebar");
+      this.$parent.activeSidebar("business-course-sidebar");
 
     },
     methods: {
@@ -196,7 +190,7 @@
           page: page,
           size: _this.$refs.pagination.size,
           courseId: _this.course.id,
-          chapterId: _this.chapter.id,
+          chapterId: _this.chapter.id
         }).then((response)=>{
           Loading.hide();
           let resp = response.data;
@@ -209,14 +203,14 @@
       /**
        * 点击【保存】
        */
-      save() {
+      save(page) {
         let _this = this;
 
         // 保存校验
         if (1 != 1
-          || !Validator.require(_this.section.title, "标题")
-          || !Validator.length(_this.section.title, "标题", 1, 50)
-          || !Validator.length(_this.section.video, "视频", 1, 200)
+                || !Validator.require(_this.section.title, "标题")
+                || !Validator.length(_this.section.title, "标题", 1, 50)
+                || !Validator.length(_this.section.video, "视频", 1, 200)
         ) {
           return;
         }
@@ -237,20 +231,6 @@
         })
       },
 
-      afterUpload(resp) {
-        let _this = this;
-        let video = resp.content.path;
-        _this.section.video = video;
-        _this.getTime();
-      },
-      /**
-       * 获取时长
-       */
-      getTime() {
-        let _this = this;
-        let ele = document.getElementById("video");
-        _this.section.time = parseInt(ele.duration, 10);
-      },
       /**
        * 点击【删除】
        */
@@ -267,10 +247,27 @@
             }
           })
         });
-      }
+      },
+
+      afterUpload(resp) {
+        let _this = this;
+        let video = resp.content.path;
+        _this.section.video = video;
+        _this.getTime();
+      },
+
+      /**
+       * 获取时长
+       */
+      getTime() {
+        let _this = this;
+        let ele = document.getElementById("video");
+        _this.section.time = parseInt(ele.duration, 10);
+      },
     }
   }
 </script>
+
 <style scoped>
   video {
     width: 100%;
