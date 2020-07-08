@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
 
 @RestController
-@RequestMapping("/courseContentFile")
+@RequestMapping("/course-content-file")
 public class CourseContentFileController {
 
     private static final Logger LOG = LoggerFactory.getLogger(CourseContentFileController.class);
