@@ -1,5 +1,6 @@
 package com.course.server.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -41,6 +42,7 @@ public class FileDto implements Serializable {
     /**
      * updated_at
      */
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date updatedAt;
     /**
      * shard_index
