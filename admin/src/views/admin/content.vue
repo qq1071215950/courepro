@@ -147,7 +147,7 @@
             saveContent () {
                 let _this = this;
                 let content = $("#content").summernote("code");
-                _this.$ajax.post(process.env.VUE_APP_SERVER + '/business/admin/course/save-content', {
+                _this.$ajax.post(process.env.VUE_APP_SERVER + '/business/course/save-content', {
                     id: _this.course.id,
                     content: content
                 }).then((response)=>{
@@ -169,7 +169,7 @@
              */
             listContentFiles() {
                 let _this = this;
-                _this.$ajax.get(process.env.VUE_APP_SERVER + '/business/admin/course-content-file/list/' + _this.course.id).then((response)=>{
+                _this.$ajax.get(process.env.VUE_APP_SERVER + '/business/course-content-file/list/' + _this.course.id).then((response)=>{
                     let resp = response.data;
                     if (resp.success) {
                         _this.files = resp.content;
@@ -186,7 +186,7 @@
                 let file = response.content;
                 file.courseId = _this.course.id;
                 file.url = file.path;
-                _this.$ajax.post(process.env.VUE_APP_SERVER + '/business/admin/course-content-file/save', file).then((response)=>{
+                _this.$ajax.post(process.env.VUE_APP_SERVER + '/business/course-content-file/save', file).then((response)=>{
                     let resp = response.data;
                     if (resp.success) {
                         Toast.success("上传文件成功");
@@ -202,7 +202,7 @@
             delFile(f) {
                 let _this = this;
                 Confirm.show("删除课程后不可恢复，确认删除？", function () {
-                    _this.$ajax.delete(process.env.VUE_APP_SERVER + '/business/admin/course-content-file/delete/' + f.id).then((response)=>{
+                    _this.$ajax.delete(process.env.VUE_APP_SERVER + '/business/course-content-file/delete/' + f.id).then((response)=>{
                         let resp = response.data;
                         if (resp.success) {
                             Toast.success("删除文件成功");
