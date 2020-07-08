@@ -64,4 +64,10 @@ public class FileDto implements Serializable {
      * vod
      */
     private String vod;
+
+    /**
+     * base64
+     */
+    private String shard;
+
 }
