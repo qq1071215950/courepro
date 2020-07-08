@@ -120,23 +120,23 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.course.server.domain.CourseContent">
-    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.String">
-      SELECT LAST_INSERT_ID()
-    </selectKey>
     insert into course_content (id, content)
-    values (#{id,jdbcType=CHAR},#{content,jdbcType=LONGVARCHAR})
+    values (#{id,jdbcType=CHAR}, #{content,jdbcType=LONGVARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.course.server.domain.CourseContent">
-    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.String">
-      SELECT LAST_INSERT_ID()
-    </selectKey>
     insert into course_content
     <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
       <if test="content != null">
         content,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=CHAR},
+      </if>
       <if test="content != null">
         #{content,jdbcType=LONGVARCHAR},
       </if>
@@ -165,7 +165,7 @@
   <update id="updateByExampleWithBLOBs" parameterType="map">
     update course_content
     set id = #{record.id,jdbcType=CHAR},
-      content = #{record.content,jdbcType=LONGVARCHAR}
+    content = #{record.content,jdbcType=LONGVARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>

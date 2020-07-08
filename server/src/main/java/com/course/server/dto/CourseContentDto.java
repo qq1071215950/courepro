@@ -2,20 +2,19 @@ package com.course.server.dto;
 
 import lombok.Data;
 
-/**
- * @author jiange
- * @date 2020/7/6 17:50
- */
+import java.io.Serializable;
+
 @Data
-public class CourseContentDto {
+public class CourseContentDto implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     /**
-     * 课程id
+     * id
      */
     private String id;
-
     /**
-     * 课程内容
+     * content
      */
     private String content;
 }
