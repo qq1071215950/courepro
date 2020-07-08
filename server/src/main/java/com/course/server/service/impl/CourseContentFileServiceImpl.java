@@ -26,15 +26,12 @@ public class CourseContentFileServiceImpl implements CourseContentFileService {
      * 列表查询
      */
     @Override
-    public void list(PageDto pageDto) {
-        PageHelper.startPage(pageDto.getPage(), pageDto.getSize());
-        CourseContentFileExample courseContentFileExample = new CourseContentFileExample();
-
-        List<CourseContentFile> courseContentFileList = courseContentFileMapper.selectByExample(courseContentFileExample);
-        PageInfo<CourseContentFile> pageInfo = new PageInfo<>(courseContentFileList);
-        pageDto.setTotal(pageInfo.getTotal());
-        List<CourseContentFileDto> courseContentFileDtoList = CopyUtil.copyList(courseContentFileList, CourseContentFileDto.class);
-        pageDto.setList(courseContentFileDtoList);
+    public List<CourseContentFileDto> list(String courseId) {
+        CourseContentFileExample example = new CourseContentFileExample();
+        CourseContentFileExample.Criteria criteria = example.createCriteria();
+        criteria.andCourseIdEqualTo(courseId);
+        List<CourseContentFile> fileList = courseContentFileMapper.selectByExample(example);
+        return CopyUtil.copyList(fileList, CourseContentFileDto.class);
     }
 
     /**

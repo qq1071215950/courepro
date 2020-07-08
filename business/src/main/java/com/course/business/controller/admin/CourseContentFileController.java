@@ -10,37 +10,39 @@ import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 @RestController
 @RequestMapping("/course-content-file")
 public class CourseContentFileController {
 
     private static final Logger LOG = LoggerFactory.getLogger(CourseContentFileController.class);
-
     public static final String BUSINESS_NAME = "课程内容文件";
 
     @Resource
     private CourseContentFileService courseContentFileService;
 
-     /**
+    /**
      * 列表查询
      */
-     @PostMapping("/list")
-     public ResponseDto list(@RequestBody PageDto pageDto) {
-         ResponseDto responseDto = new ResponseDto();
-         courseContentFileService.list(pageDto);
-         responseDto.setContent(pageDto);
-         return responseDto;
-     }
+    @GetMapping("/list/{courseId}")
+    public ResponseDto list(@PathVariable String courseId) {
+        ResponseDto responseDto = new ResponseDto();
+        List<CourseContentFileDto> fileDtoList = courseContentFileService.list(courseId);
+        responseDto.setContent(fileDtoList);
+        return responseDto;
+    }
 
     /**
-    * 保存，id有值时更新，无值时新增
-    */
+     * 保存，id有值时更新，无值时新增
+     */
     @PostMapping("/save")
     public ResponseDto save(@RequestBody CourseContentFileDto courseContentFileDto) {
-        ValidatorUtil.require(courseContentFileDto.getCourseId(), "courseId");
-        ValidatorUtil.length(courseContentFileDto.getUrl(), "url", 1, 100);
-        ValidatorUtil.length(courseContentFileDto.getName(), "name", 1, 100);
+        // 保存校验
+        ValidatorUtil.require(courseContentFileDto.getCourseId(), "课程ID");
+        ValidatorUtil.length(courseContentFileDto.getUrl(), "地址", 1, 100);
+        ValidatorUtil.length(courseContentFileDto.getName(), "文件名", 1, 100);
+
         ResponseDto responseDto = new ResponseDto();
         courseContentFileService.save(courseContentFileDto);
         responseDto.setContent(courseContentFileDto);
@@ -48,8 +50,8 @@ public class CourseContentFileController {
     }
 
     /**
-    * 删除
-    */
+     * 删除
+     */
     @DeleteMapping("/delete/{id}")
     public ResponseDto delete(@PathVariable String id) {
         ResponseDto responseDto = new ResponseDto();

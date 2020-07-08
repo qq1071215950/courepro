@@ -122,7 +122,7 @@
                 _this.listContentFiles();
 
                 Loading.show();
-                _this.$ajax.get(process.env.VUE_APP_SERVER + '/business/admin/course/find-content/' + id).then((response)=>{
+                _this.$ajax.get(process.env.VUE_APP_SERVER + '/business/course/find-content/' + id).then((response)=>{
                     Loading.hide();
                     let resp = response.data;
 
