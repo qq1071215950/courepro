@@ -19,4 +19,6 @@ public interface FileService {
     * 删除
     */
     void delete(String id);
+
+    FileDto findByKey(String key);
 }

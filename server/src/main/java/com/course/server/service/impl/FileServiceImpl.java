@@ -90,4 +90,14 @@ public class FileServiceImpl implements FileService {
     public void delete(String id) {
         fileMapper.deleteByPrimaryKey(id);
     }
+
+
+    /**
+     * 根据文件标识查询数据库记录
+     */
+    @Override
+    public FileDto findByKey(String key) {
+        return CopyUtil.copy(selectByKey(key), FileDto.class);
+    }
 }
+
