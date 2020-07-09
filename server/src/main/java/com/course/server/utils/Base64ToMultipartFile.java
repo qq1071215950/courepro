@@ -10,7 +10,6 @@ import java.io.*;
  * @date 2020/7/8 17:55
  */
 public class Base64ToMultipartFile implements MultipartFile {
-
     private final byte[] imgContent;
     private final String header;
 
