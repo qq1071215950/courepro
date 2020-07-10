@@ -1,6 +1,10 @@
 package com.course.file;
 
 import com.course.file.query.Query;
+import com.course.file.responsibility.impl.FilterIResponsibility;
+import com.course.file.responsibility.impl.SortResponsibility;
+import com.course.file.responsibility.impl.TreeIResponsibility;
+import com.course.file.responsibility.operation.FormCapacityPipeline;
 import com.course.file.strategy.impl.DoOperation;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -19,7 +23,9 @@ public class BaseFileApplicationTest {
     @Autowired
     private DoOperation operation;
 
-    @Test
+    /**
+     * 策略模式测试
+     */
     public void test1(){
         Query query = new Query();
         query.setNumber1(10);
@@ -28,4 +34,16 @@ public class BaseFileApplicationTest {
         operation.calculation(query);
     }
 
+    /**
+     * 责任链测试
+     */
+    @Test
+    public void test2(){
+        String string = FormCapacityPipeline.createInstance()
+                .add(new SortResponsibility())
+                .add(new TreeIResponsibility())
+                .add(new FilterIResponsibility()).excution("测试");
+        System.out.println("/////////");
+        System.out.println(string);
+    }
 }
