@@ -35,7 +35,9 @@ public class LogAspect {
     private final static Logger LOG = LoggerFactory.getLogger(LogAspect.class);
 
     /** 定义一个切点 */
-    @Pointcut("execution(public * com.course.*.controller..*Controller.*(..))")
+   // @Pointcut("execution(public * com.course.*.controller..*Controller.*(..))")
+
+    @Pointcut("@annotation(com.course.server.annotion.MethodLog)")
     public void controllerPointcut() {
 
     }

@@ -1,5 +1,6 @@
 package com.course.business.controller.admin;
 
+import com.course.server.annotion.MethodLog;
 import com.course.server.service.CategoryService;
 import com.course.server.dto.CategoryDto;
 import com.course.server.dto.PageDto;
@@ -25,6 +26,7 @@ public class CategoryController {
      /**
      * 列表查询
      */
+     @MethodLog
      @PostMapping("/list")
      public ResponseDto list(@RequestBody PageDto pageDto) {
          ResponseDto responseDto = new ResponseDto();
@@ -36,6 +38,7 @@ public class CategoryController {
     /**
     * 保存，id有值时更新，无值时新增
     */
+    @MethodLog
     @PostMapping("/save")
     public ResponseDto save(@RequestBody CategoryDto categoryDto) {
         ValidatorUtil.require(categoryDto.getParent(), "parent");
@@ -50,6 +53,7 @@ public class CategoryController {
     /**
     * 删除
     */
+    @MethodLog
     @DeleteMapping("/delete/{id}")
     public ResponseDto delete(@PathVariable String id) {
         ResponseDto responseDto = new ResponseDto();
@@ -61,6 +65,7 @@ public class CategoryController {
     /**
      * 列表查询
      */
+    @MethodLog
     @PostMapping("/all")
     public ResponseDto all() {
         ResponseDto responseDto = new ResponseDto();
