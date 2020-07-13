@@ -51,6 +51,7 @@ public class LogAspect {
         ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
         HttpServletRequest request = attributes.getRequest();
         Signature signature = joinPoint.getSignature();
+        //获取方法名
         String name = signature.getName();
 
         // 打印业务操作
@@ -65,7 +66,7 @@ public class LogAspect {
             nameCn = "操作";
         }
 
-        // 使用反射，获取业务名称
+        // 使用反射，获取业务名称 获取字节码对象
         Class clazz = signature.getDeclaringType();
         Field field;
         String businessName = "";
@@ -97,6 +98,7 @@ public class LogAspect {
             }
             arguments[i] = args[i];
         }
+        // todo 日志的处理注意进行脱敏处理
         // 排除字段，敏感字段或太长的字段不显示
         String[] excludeProperties = {};
         PropertyPreFilters filters = new PropertyPreFilters();
@@ -108,6 +110,7 @@ public class LogAspect {
     @Around("controllerPointcut()")
     public Object doAround(ProceedingJoinPoint proceedingJoinPoint) throws Throwable {
         long startTime = System.currentTimeMillis();
+        // 执行目标方法
         Object result = proceedingJoinPoint.proceed();
         // 排除字段，敏感字段或太长的字段不显示
         String[] excludeProperties = {"password"};
